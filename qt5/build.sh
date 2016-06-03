@@ -7,15 +7,6 @@ QTCONF=$BIN/qt.conf
 VER=$PKG_VERSION
 
 
-# Download QtWebkit
-# -----------------
-curl "http://linorg.usp.br/Qt/community_releases/5.6/${VER}/qtwebkit-opensource-src-${VER}.tar.xz" > qtwebkit.tar.xz
-unxz qtwebkit.tar.xz
-tar xf qtwebkit.tar
-mv qtwebkit-opensource-src* qtwebkit
-rm qtwebkit.tar
-
-
 # Compile
 # -------
 chmod +x configure
@@ -94,7 +85,6 @@ if [ `uname` == Darwin ]; then
                 -nomake examples \
                 -nomake tests \
                 -verbose \
-                -skip webengine \
                 -skip enginio \
                 -skip location \
                 -skip sensors \
@@ -107,8 +97,7 @@ if [ `uname` == Darwin ]; then
                 -skip 3d \
                 -qt-pcre \
                 -qt-freetype \
-                -platform macx-g++ \
-                -no-c++11 \
+                -c++11 \
                 -no-framework \
                 -no-dbus \
                 -no-mtdev \
